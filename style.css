@@ -1,0 +1,592 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== BOTÃO WHATSAPP ==== */
+.whatsapp-button{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366;
+  color: white;
+  padding: 16px;
+  border-radius: 50%;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-button svg {
+  display: block;
+}
+
+.whatsapp-button::after{
+  content: "Entra em contato aqui!";
+  position: absolute;
+  right: 60px;
+  background: #333;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.whatsapp-button:hover::after {
+  opacity: 1;
+}
+
+/* ===== FUNDO CÓSMICO COM ESTRELAS ===== */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  min-height: 100vh;
+  background-attachment: fixed;
+  padding: 20px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Estrelas no fundo */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, white, transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 90px 40px, white, transparent),
+    radial-gradient(2px 2px at 160px 120px, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1px 1px at 230px 80px, white, transparent),
+    radial-gradient(2px 2px at 300px 50px, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 50px 150px, white, transparent),
+    radial-gradient(2px 2px at 120px 200px, rgba(255,255,255,0.6), transparent);
+  background-repeat: repeat;
+  background-size: 350px 250px;
+  z-index: 0;
+  opacity: 0.5;
+  animation: twinkle 3s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.3; }
+  to { opacity: 0.7; }
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== HEADER ===== */
+header {
+  text-align: center;
+  margin-bottom: 30px;
+  color: white;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+.subtitulo {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  font-weight: 600;
+}
+
+/* ===== FORMULÁRIO ===== */
+.formulario-tarefa {
+  background: rgba(18, 22, 35, 0.75);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(120, 140, 255, 0.25);
+  border-radius: 24px;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.45),
+    inset 0 1px 1px rgba(255,255,255,0.08),
+    0 0 25px rgba(102, 126, 234, 0.18);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.formulario-tarefa::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: 24px;
+  background: linear-gradient(
+    135deg,
+    rgba(102,126,234,0.7),
+    rgba(118,75,162,0.5),
+    rgba(255,255,255,0.08)
+  );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.formulario-tarefa:hover {
+  box-shadow:
+    0 10px 40px rgba(0,0,0,0.5),
+    0 0 35px rgba(102,126,234,0.25);
+}
+
+/* ===== INPUT ===== */
+#inputTarefa {
+  width: 100%;
+  padding: 16px 20px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(10, 14, 24, 0.75);
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+  margin-bottom: 15px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.4);
+}
+
+#inputTarefa::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+
+#inputTarefa:focus {
+  border-color: rgba(102,126,234,0.5);
+  background: rgba(14,18,30,0.95);
+  box-shadow:
+    0 0 0 3px rgba(102,126,234,0.15),
+    0 0 20px rgba(102,126,234,0.18);
+  transform: scale(1.01);
+}
+
+/* ===== PRIORIDADES ===== */
+.prioridades {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.prioridade-btn {
+  flex: 1;
+  min-width: 100px;
+  cursor: pointer;
+}
+
+.prioridade-btn input {
+  display: none;
+}
+
+.prioridade-btn span {
+  display: block;
+  padding: 12px;
+  text-align: center;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(18,22,35,0.75);
+  color: white;
+}
+
+.prioridade-btn span:hover {
+  transform: translateY(-2px);
+}
+
+.prioridade-btn.alta span {
+  background: rgba(255, 80, 80, 0.18);
+}
+
+.prioridade-btn.media span {
+  background: rgba(255, 193, 7, 0.15);
+}
+
+.prioridade-btn.baixa span {
+  background: rgba(76, 175, 80, 0.15);
+}
+
+.prioridade-btn input:checked + span {
+  transform: scale(1.03);
+  border-color: rgba(255,255,255,0.2);
+  box-shadow: 0 0 18px rgba(255,255,255,0.08);
+}
+
+.prioridade-btn.alta input:checked + span {
+  background: linear-gradient(135deg, #df4545, #f13f3f);
+}
+
+.prioridade-btn.media input:checked + span {
+  background: linear-gradient(135deg, #d7e34a, #f5f836);
+}
+
+.prioridade-btn.baixa input:checked + span {
+  background: linear-gradient(135deg, #3ba94a, #32a348);
+}
+
+/* ===== BOTÃO ===== */
+#btnAdicionar {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 0 12px rgba(102,126,234,0.45),
+    0 0 25px rgba(118,75,162,0.35),
+    0 8px 20px rgba(0,0,0,0.35);
+  animation: pulseGlow 2.2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow:
+      0 0 12px rgba(102,126,234,0.45),
+      0 0 25px rgba(118,75,162,0.35),
+      0 8px 20px rgba(0,0,0,0.35);
+  }
+  50% {
+    box-shadow:
+      0 0 18px rgba(102,126,234,0.75),
+      0 0 40px rgba(118,75,162,0.55),
+      0 8px 25px rgba(0,0,0,0.45);
+  }
+}
+
+#btnAdicionar::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.25),
+    transparent
+  );
+  transform: rotate(25deg);
+  transition: 0.8s;
+}
+
+#btnAdicionar:hover::after {
+  left: 130%;
+}
+
+#btnAdicionar:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow:
+    0 0 20px rgba(102,126,234,0.85),
+    0 0 45px rgba(118,75,162,0.6),
+    0 12px 30px rgba(0,0,0,0.45);
+}
+
+#btnAdicionar:active {
+  transform: scale(0.98);
+}
+
+/* ===== FILTROS ===== */
+.filtros {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filtro {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(18,22,35,0.7);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filtro:hover {
+  background: rgba(35,40,60,0.9);
+  transform: translateY(-2px);
+}
+
+.filtro.ativo {
+  background: linear-gradient(
+    135deg,
+    rgba(102,126,234,0.35),
+    rgba(118,75,162,0.35)
+  );
+  border-color: rgba(255,255,255,0.2);
+  box-shadow: 0 0 15px rgba(102,126,234,0.2);
+}
+
+/* ===== CONTADOR ===== */
+.contador {
+  text-align: center;
+  margin-bottom: 20px;
+  color: white;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+/* ===== LISTA ===== */
+.lista-tarefas {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* =========================================================
+   TAREFAS PREMIUM - PRIORIDADE NOVA (ALTERADO AQUI!)
+========================================================= */
+.tarefa {
+  background: rgba(20, 24, 38, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 18px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow:
+    0 6px 18px rgba(0,0,0,0.35),
+    inset 0 1px 1px rgba(255,255,255,0.05);
+}
+
+.tarefa:hover {
+  transform: translateY(-3px) scale(1.01);
+  border-color: rgba(102,126,234,0.4);
+  box-shadow:
+    0 10px 28px rgba(0,0,0,0.4),
+    0 0 22px rgba(102,126,234,0.18);
+  background: rgba(28, 32, 48, 0.95);
+}
+
+/* BARRA LATERAL COM GRADIENTE E GLOW */
+.tarefa::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  border-radius: 0 3px 3px 0;
+}
+
+.tarefa.alta::before {
+  background: linear-gradient(180deg, #ff4d4d 0%, #ff1a1a 50%, #a10000 100%);
+  box-shadow: 0 0 10px rgba(255, 77, 77, 0.6), 0 0 20px rgba(255, 77, 77, 0.3);
+}
+
+.tarefa.media::before {
+  background: linear-gradient(180deg, #ffd54f 0%, #ffb300 50%, #f57f17 100%);
+  box-shadow: 0 0 10px rgba(255, 193, 7, 0.5), 0 0 20px rgba(255, 193, 7, 0.2);
+}
+
+.tarefa.baixa::before {
+  background: linear-gradient(180deg, #66bb6a 0%, #43a047 50%, #1b5e20 100%);
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5), 0 0 20px rgba(76, 175, 80, 0.2);
+}
+
+/* CONCLUÍDA */
+.tarefa.concluida {
+  opacity: 0.7;
+}
+
+.tarefa.concluida .texto-tarefa {
+  text-decoration: line-through;
+  color: rgba(255,255,255,0.5);
+}
+
+/* CHECKBOX */
+.checkbox-tarefa {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.checkbox-tarefa:hover {
+  transform: scale(1.1);
+  border-color: white;
+}
+
+.tarefa.concluida .checkbox-tarefa {
+  background: #4caf50;
+  border-color: #4caf50;
+}
+
+.tarefa.concluida .checkbox-tarefa::after {
+  content: '✓';
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+/* TEXTO */
+.texto-tarefa {
+  flex: 1;
+  color: white;
+  font-weight: 600;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  min-width: 0;
+}
+
+/* =========================================================
+   TAGS DE PRIORIDADE NOVAS - NEON GLASS (ALTERADO AQUI!)
+========================================================= */
+.prioridade-tag {
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 1px solid;
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+}
+
+.prioridade-tag.alta {
+  background: rgba(255, 77, 77, 0.12);
+  color: #ff6b6b;
+  border-color: rgba(255, 107, 107, 0.4);
+  box-shadow: 0 0 8px rgba(255, 107, 107, 0.15), inset 0 1px 1px rgba(255,255,255,0.05);
+}
+
+.prioridade-tag.media {
+  background: rgba(255, 193, 7, 0.12);
+  color: #ffd54f;
+  border-color: rgba(255, 213, 79, 0.4);
+  box-shadow: 0 0 8px rgba(255, 213, 79, 0.15), inset 0 1px 1px rgba(255,255,255,0.05);
+}
+
+.prioridade-tag.baixa {
+  background: rgba(76, 175, 80, 0.12);
+  color: #81c784;
+  border-color: rgba(129, 199, 132, 0.4);
+  box-shadow: 0 0 8px rgba(129, 199, 132, 0.15), inset 0 1px 1px rgba(255,255,255,0.05);
+}
+
+/* HOVER NAS TAGS */
+.tarefa:hover .prioridade-tag.alta {
+  box-shadow: 0 0 15px rgba(156, 124, 124, 0.35), inset 0 1px 1px rgba(255,255,255,0.1);
+}
+
+.tarefa:hover .prioridade-tag.media {
+  box-shadow: 0 0 15px rgba(255, 213, 79, 0.3), inset 0 1px 1px rgba(255,255,255,0.1);
+}
+
+.tarefa:hover .prioridade-tag.baixa {
+  box-shadow: 0 0 15px rgba(129, 199, 132, 0.3), inset 0 1px 1px rgba(255,255,255,0.1);
+}
+
+/* BOTÕES */
+.btn-editar,
+.btn-excluir {
+  border: none;
+  border-radius: 12px;
+  padding: 9px 12px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-editar {
+  background: rgba(102,126,234,0.25);
+}
+
+.btn-excluir {
+  background: rgba(255,77,77,0.22);
+}
+
+.btn-editar:hover,
+.btn-excluir:hover {
+  transform: scale(1.08);
+}
+
+.btn-editar:hover {
+  background: rgba(102,126,234,0.5);
+}
+
+.btn-excluir:hover {
+  background: rgba(255,77,77,0.5);
+}
+
+/* ===== ESTADO VAZIO ===== */
+.vazio {
+  text-align: center;
+  padding: 50px 10px;
+  color: white;
+  display: none;
+}
+
+.vazio.visivel {
+  display: block;
+}
+
+.emoji-vazio {
+  font-size: 4rem;
+  margin-bottom: 15px;
+  animation: flutuar 2s ease-in-out infinite;
+}
+
+@keyframes flutuar {
+  0%, 100%{
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.vazio p {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.vazio .dica {
+  opacity: 0.7;
+}
